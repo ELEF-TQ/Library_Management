@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style><?php include './assets/css/style.css'; ?></style>
+   
 </head>
 
 <body>
@@ -90,6 +91,7 @@
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>List des Livres</h2>
+                        <a href="./database/Book/insertBook.php" class="btn">Ajouter un livre</a>
                     </div>
 
                     <table>
@@ -103,86 +105,42 @@
                                 <td>Statut</td>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>
-                                    <input type="submit" class="status delivered" value="Modifier">
-                                    <input type="submit" class="status return" value="Supprimer">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>
-                                    <input type="submit" class="status delivered" value="Modifier">
-                                    <input type="submit" class="status return" value="Supprimer">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>
-                                    <input type="submit" class="status delivered" value="Modifier">
-                                    <input type="submit" class="status return" value="Supprimer">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>
-                                    <input type="submit" class="status delivered" value="Modifier">
-                                    <input type="submit" class="status return" value="Supprimer">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>
-                                    <input type="submit" class="status delivered" value="Modifier">
-                                    <input type="submit" class="status return" value="Supprimer">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>
-                                    <input type="submit" class="status delivered" value="Modifier">
-                                    <input type="submit" class="status return" value="Supprimer">
-                                </td>
-                            </tr>
-
+                            <!-- Select livres-->
+                                <?php 
+                                include 'database/connect.php' ;
+                                $selectSQL = "SELECT * FROM  `livres`";
+                                $result=@mysql_query($selectSQL,$idcon);
+                                    if($result){
+                                        while($row = mysql_fetch_assoc($result) ) {
+                                            $id = $row['Numero'] ;
+                                            $Titre = $row['Titre'] ;
+                                            $Auteur = $row['Auteur'] ;
+                                            $Maison = $row['Maison'] ;
+                                            $Pages = $row['Pages'] ;
+                                            $Exemplaire = $row['Exemplaires'] ;
+                                            echo "<tr>";
+                                            echo "<td>$Titre</td>";
+                                            echo "<td>$Auteur</td>";
+                                            echo "<td>$Maison</td>";
+                                            echo "<td>$Pages</td>";
+                                            echo "<td>$Exemplaire</td>";
+                                            echo "<td>";
+                                            echo " <button class=\"status delivered\"  name=\"Update\" > <a  href=\"database/Book/updateBook.php?updateid=$id \"> Modifier</a> </button> " ;   
+                                            echo " <button class=\"status return\"     name=\"Delete\" > <a  href=\"database/Book/deleteBook.php?deleteid=$id \"> Supprimer</a> </button> " ;             
+                                            echo "</td>" ;     
+                                            echo " </tr>" ;
+                                        }
+                                    }
+                                mysql_close($idcon);
+                                ?>
+                            <!-- end of select-->
                         </tbody>
                     </table>
                 </div>
 
                 <!-- =========== Ajouter un livre =========  -->
-                <div class="details">
+                <!-- <div class="details">
                     <div class="recentOrders">
                         <div class="cardHeader">
                             <h2>Ajouter un livre</h2>
@@ -212,7 +170,7 @@
                                 <tr><td><input type="submit" value= "Ajouter" class="status delivered"/></td></tr>
                         </form>
                     </div>
-                </div>
+                </div> -->
 
 
 
