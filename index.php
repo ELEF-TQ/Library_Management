@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+    <?php  include './database/connect.php' ; ?>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style><?php include './assets/css/style.css'; ?></style><link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -22,7 +24,7 @@
                 </li>
 
                 <li>
-                    <a href="index.html">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -31,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="Books.php">
+                    <a href="./database/Book/Books.php">
                         <span class="icon">
                             <ion-icon name="document-text-outline"></ion-icon>
                         </span>
@@ -40,7 +42,7 @@
                 </li>
 
                 <li>
-                    <a href="Clients.html">
+                    <a href="./database/Client/Clients.php">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -75,19 +77,23 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
-
-               
-
             </div>
 
             <!-- ======================= Cards ================== -->
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers">15</div>
+                        <div class="numbers">
+                           <?php 
+                                $selectSQL = "SELECT COUNT(*) as count FROM `livres`";
+                                $result=@mysql_query($selectSQL,$idcon);
+                                $row = mysql_fetch_assoc($result);
+                                $livres = $row['count'];
+                                echo "$livres" ;
+                            ?>
+                        </div>
                         <div class="cardName">Livre</div>
                     </div>
-
                     <div class="iconBx">
                         <ion-icon name="book-outline"></ion-icon>
                     </div>
@@ -95,10 +101,17 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
+                        <div class="numbers">
+                          <?php 
+                            $selectSQL = "SELECT COUNT(*) as count FROM `usager`";
+                            $result=@mysql_query($selectSQL,$idcon);
+                            $row = mysql_fetch_assoc($result);
+                            $usagers = $row['count'];
+                            echo "$usagers" ;
+                            ?>
+                        </div>
                         <div class="cardName">Usager</div>
                     </div>
-
                     <div class="iconBx">
                         <ion-icon name="person-outline"></ion-icon>
                     </div>
@@ -106,7 +119,15 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
+                        <div class="numbers">
+                          <?php 
+                            $selectSQL = "SELECT SUM(Exemplaires) as sum FROM `livres`";
+                            $result=@mysql_query($selectSQL,$idcon);
+                            $row = mysql_fetch_assoc($result);
+                            $nbrExmp = $row['sum'];
+                            echo "$nbrExmp" ;
+                            ?>
+                        </div>
                         <div class="cardName">Exemplaire</div>
                     </div>
 

@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- ======= Styles ====== -->
      <style><?php include '../../assets/css/style.css'; ?></style>
-    
-     
-  
-
     <title>Document</title>
 </head>
 <body>
+  <header>
+    <h1 class="header-title">Ajouter un livre</h1>
+  </header>
 <section class="section_form">
   <form id="consultation-form" class="feed-form" method="POST">
     <input name="titre" placeholder="Nom" type="text">
@@ -45,7 +44,7 @@ if(isset($_POST['Ajouter'])) {
 
   if($result){
     echo "<script type=\"text/javascript\"> alert('Livre enregistrer avec succces'); 
-    window.location.href = \"http://localhost/projet-web/Books.php\";
+    window.location.href = \"http://localhost/projet-web/database/Book/Books.php\";
            </script>";
   }else {
     echo "<script type=\"text/javascript\"> alert('Erreur : ".mysql_error()."')</script>";

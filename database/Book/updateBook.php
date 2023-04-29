@@ -28,7 +28,7 @@ if(isset($_POST['Modifier'])) {
   $result=@mysql_query($updatetSQL,$idcon);
   if($result){
     echo "<script type=\"text/javascript\"> alert('Livre Modifier avec succces'); 
-    window.location.href = \"http://localhost/projet-web/Books.php\";
+    window.location.href = \"http://localhost/projet-web/database/Book/Books.php\";
            </script>";
   }else {
     echo "<script type=\"text/javascript\"> alert('Erreur : ".mysql_error()."')</script>";
@@ -47,12 +47,20 @@ if(isset($_POST['Modifier'])) {
     <title>Document</title>
 </head>
 <body>
+<header>
+    <h1 class="header-title">Modifier les informations</h1>
+  </header>
 <section class="section_form">
   <form id="consultation-form" class="feed-form" method="POST">
+    <label for="titre">Titre</label>
     <input name="titre" type="text" value=<?php echo $Titre_Orig ;?> >
+    <label for="auteur">Auteur</label>
     <input name="auteur" type="text" value=<?php echo $Auteur_Orig ;?>>
+    <label for="maison">Maison d'édition</label>
     <input name="maison" type="text" value=<?php echo $Maison_Orig ;?>>
+    <label for="nbrExp">Nombre d'exemplaire</label>
     <input name="nbrExp" type="text" value=<?php echo $Exemplaire_Orig ;?>>
+    <label for="nbrPage">Nombre des pages</label>
     <input name="nbrPage" type="text" value=<?php echo $Pages_Orig ;?> >
     <button class="button_submit" type="submit" name="Modifier" >Modifier</button>
   </form>
