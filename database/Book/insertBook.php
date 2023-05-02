@@ -4,32 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- ======= Styles ====== -->
-     <style><?php include '../../assets/css/style.css'; ?></style>
-    <title>Document</title>
+    <!-- ======= DBConnection ====== -->
+    <?php include '../connect.php' ; ?>
+    <!-- ======= Styles ====== -->
+    <style><?php include '../../assets/css/style.css'; ?></style>
+    <title>Ajouter un livre</title>
 </head>
 <body>
-  <header>
-    <h1 class="header-title">Ajouter un livre</h1>
-  </header>
-<section class="section_form">
-  <form id="consultation-form" class="feed-form" method="POST">
-    <input name="titre" placeholder="Nom" type="text">
-    <input name="auteur" placeholder="Auteur" type="text">
-    <input name="maison" placeholder="Maison d'edition" type="text">
-    <input name="nbrExp" placeholder="Nombre d'exemplaire" type="text">
-    <input name="nbrPage" placeholder="Nombre des Pages" type="text">
-    <button class="button_submit" type="submit" name="Ajouter" >Ajouter</button>
-  </form>
-</section>
-
+    <header>
+      <h1 class="header-title">Ajouter un livre</h1>
+    </header>
+    <section class="section_form">
+      <form id="consultation-form" class="feed-form" method="POST">
+        <input name="titre" placeholder="Nom" type="text">
+        <input name="auteur" placeholder="Auteur" type="text">
+        <input name="maison" placeholder="Maison d'edition" type="text">
+        <input name="nbrExp" placeholder="Nombre d'exemplaire" type="text">
+        <input name="nbrPage" placeholder="Nombre des Pages" type="text">
+        <button class="button_submit" type="submit" name="Ajouter" >Ajouter</button>
+      </form>
+    </section>
 </body>
 </html>
 
-
 <?php 
-include '../connect.php' ;
-
 if(isset($_POST['Ajouter'])) {
   $Titre = $_POST['titre'] ;
   $Auteur = $_POST['auteur'] ;
@@ -51,5 +49,5 @@ if(isset($_POST['Ajouter'])) {
   }
 
 }
-
+mysql_close($idcon);
 ?>

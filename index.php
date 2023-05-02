@@ -37,7 +37,7 @@
                         <span class="icon">
                             <ion-icon name="document-text-outline"></ion-icon>
                         </span>
-                        <span class="title">Books</span>
+                        <span class="title">Livres</span>
                     </a>
                 </li>
 
@@ -46,26 +46,16 @@
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
-                        <span class="title">Clients</span>
+                        <span class="title">Usagers</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="Loans.html">
+                    <a href="./database/Loan/Loans.php">
                         <span class="icon">
                             <ion-icon name="bag-check-outline"></ion-icon>
                         </span>
-                        <span class="title">Loans</span>
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
+                        <span class="title">Emprunts</span>
                     </a>
                 </li>
             </ul>
@@ -138,8 +128,16 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">20</div>
-                        <div class="cardName">Emprunt</div>
+                    <div class="numbers">
+                           <?php 
+                                $selectSQL = "SELECT COUNT(*) as count FROM `emprunts`";
+                                $result=@mysql_query($selectSQL,$idcon);
+                                $row = mysql_fetch_assoc($result);
+                                $emprunt = $row['count'];
+                                echo "$emprunt" ;
+                            ?>
+                        </div>
+                        <div class="cardName">Emprunt en cours</div>
                     </div>
 
                     <div class="iconBx">

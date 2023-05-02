@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management</title>
+    <!-- ======= DBConnection ====== -->
+    <?php include '../connect.php' ;?>
     <!-- ======= Styles ====== -->
     <style><?php include '../../assets/css/style.css'; ?></style>
-   
 </head>
-
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
@@ -36,7 +35,7 @@
                         <span class="icon">
                             <ion-icon name="document-text-outline"></ion-icon>
                         </span>
-                        <span class="title">Books</span>
+                        <span class="title">Livres</span>
                     </a>
                 </li>
 
@@ -45,7 +44,7 @@
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
-                        <span class="title">Clients</span>
+                        <span class="title">Usagers</span>
                     </a>
                 </li>
 
@@ -54,17 +53,7 @@
                         <span class="icon">
                             <ion-icon name="bag-check-outline"></ion-icon>
                         </span>
-                        <span class="title">Loans</span>
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
+                        <span class="title">Emprunts</span>
                     </a>
                 </li>
             </ul>
@@ -78,21 +67,20 @@
                 </div>
                     <form class="search" method="GET" >
                         <div class="input-container">
-                            <input type="text" name="search_filter" class="input" placeholder="chercher un Client"  id="filterInput">
+                            <input type="text" name="search_filter" class="input" placeholder="chercher un usager par nom"  id="filterInput">
                             <span class="icon"> 
                                 <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                             </span>
                         </div>
                     </form>
-        </div>
-            <!-- ================ Order Details List ================= -->
+                </div>
+            <!-- ================ Array ================= -->
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>List des Usagers</h2>
                         <a href="insertUsager.php" class="btn">Ajouter un usager</a>
                     </div>
-
                     <table id="myTable">
                         <thead>
                             <tr>
@@ -108,12 +96,11 @@
                         <tbody>
                             <!-- Select livres-->
                                 <?php 
-                                include '../connect.php' ;
                                 $selectSQL = "SELECT * FROM  `usager`";
                                 $result=@mysql_query($selectSQL,$idcon);
                                     if($result){
                                         while($row = mysql_fetch_assoc($result) ) {
-                                            $id = $row['Numero'] ;
+                                            $id = $row['Numero_usager'] ;
                                             $Nom = $row['Nom'] ;
                                             $Prenom = $row['Prenom'] ;
                                             $Adresse = $row['Adresse'] ;
@@ -139,10 +126,6 @@
                         </tbody>
                     </table>
                 </div>
-
-     
-
-
 
     <!-- =========== Scripts =========  -->
     <script src="../../assets/js/main.js"></script>

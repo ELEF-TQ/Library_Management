@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- ======= Styles ====== -->
-     <style><?php include '../../assets/css/style.css'; ?></style>
-    
-     
-  
-
-    <title>Document</title>
+    <!-- ======= DBConnection ====== -->
+    <?php include '../connect.php' ;?>
+    <!-- ======= Styles ====== -->
+    <style><?php include '../../assets/css/style.css'; ?></style>
+    <title>Ajouter un usager</title>
 </head>
 <body>
 <header>
@@ -22,7 +20,6 @@
     <input name="prenom" placeholder="Prenom" type="text">
     <input name="adresse" placeholder="Adresse" type="text">
     <input name="email" placeholder="email" type="text">
-
     <div class="mydict">
         <div>
             <label><input type="radio" name="statut" checked="" value="Etudiant">
@@ -33,18 +30,14 @@
             </label>
         </div>
     </div>
-
     <button class="button_submit" type="submit" name="Ajouter" >Ajouter</button>
   </form>
 </section>
-
 </body>
 </html>
 
 
 <?php 
-include '../connect.php' ;
-
 if(isset($_POST['Ajouter'])) {
   $Nom = $_POST['nom'] ;
   $Prenom = $_POST['prenom'] ;
@@ -57,13 +50,12 @@ if(isset($_POST['Ajouter'])) {
   $result=@mysql_query($insertSQL,$idcon);
 
   if($result){
-    echo "<script type=\"text/javascript\"> alert('Usagers enregistrer avec succces'); 
+    echo "<script type=\"text/javascript\"> alert('usager enregistrer avec succces'); 
     window.location.href = \"http://localhost/projet-web/database/Client/Clients.php\";
            </script>";
   }else {
     echo "<script type=\"text/javascript\"> alert('Erreur : ".mysql_error()."')</script>";
   }
-
 }
-
+mysql_close($idcon);
 ?>

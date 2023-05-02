@@ -2,7 +2,7 @@
 include '../connect.php' ;
 if(isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'] ;
-    $deleteSQL = "DELETE FROM `livres` WHERE Numero=$id " ;
+    $deleteSQL = "DELETE FROM `livres` WHERE Numero_livre=$id " ;
     $result=@mysql_query($deleteSQL,$idcon);
 
     if($result){
@@ -14,4 +14,5 @@ if(isset($_GET['deleteid'])) {
     }
 
 }
+mysql_close($idcon);
 ?>
